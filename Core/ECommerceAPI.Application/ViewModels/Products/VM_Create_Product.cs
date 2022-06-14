@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ECommerceAPI.Domain.Entities.Common;
 
-namespace ECommerceAPI.Domain.Entities
+namespace ECommerceAPI.Application.ViewModels.Products
 {
-    public class Product : BaseEntity
+    public class VM_Create_Product
     {
         public string Name { get; set; }
         public int Stock { get; set; }
         public float Price { get; set; }
-
-        public ICollection<Order> Orders { get; set; }  //bir product birden fazla order edilmis olabilir.
     }
 }

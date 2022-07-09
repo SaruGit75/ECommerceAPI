@@ -1,4 +1,5 @@
 using ECommerceAPI.Application.Validators.Products;
+using ECommerceAPI.Infrastructure;
 using ECommerceAPI.Infrastructure.Filters;
 using ECommerceAPI.Persistance.Extensions;
 using FluentValidation.AspNetCore;
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddPersistanceServices();
+builder.Services.AddInfrastructureServices();
 
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true); // bunun yerine datetime.now yerine utcnow kullanilabilir.
 
@@ -41,6 +43,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseStaticFiles();
 
 app.UseCors();
 

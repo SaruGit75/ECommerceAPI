@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using ECommerceAPI.Application.Repositories;
 using ECommerceAPI.Application.RequestParameters;
+using ECommerceAPI.Application.Services;
 using ECommerceAPI.Application.ViewModels.Products;
 using ECommerceAPI.Domain.Entities;
 using Microsoft.AspNetCore.Http;
@@ -14,10 +15,14 @@ namespace ECommerceAPI.API.Controllers
     {
         private readonly IProductWriteRepository _productWriteRepository;
         private readonly IProductReadRepository _productReadRepository;
-        public ProductsController(IProductWriteRepository productWriteRepository, IProductReadRepository productReadRepository)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IFileService _fileService;
+        public ProductsController(IProductWriteRepository productWriteRepository, IProductReadRepository productReadRepository, IWebHostEnvironment webHostEnvironment, IFileService fileService)
         {
             _productWriteRepository = productWriteRepository;
             _productReadRepository = productReadRepository;
+            _webHostEnvironment = webHostEnvironment;
+            _fileService = fileService;
         }
 
 
@@ -118,6 +123,13 @@ namespace ECommerceAPI.API.Controllers
             await _productWriteRepository.RemoveAsync(id);
             await _productWriteRepository.SaveAsync();
 
+            return Ok();
+        }
+
+        [HttpPost("[action]")]  //zorunlu olarak endpoint'in sonuna action bilgisi girilmesi gerekiyor.
+        public async Task<IActionResult> Upload()
+        {
+            _fileService.UploadAsync("resource/product-images", Request.Form.Files);
             return Ok();
         }
     }

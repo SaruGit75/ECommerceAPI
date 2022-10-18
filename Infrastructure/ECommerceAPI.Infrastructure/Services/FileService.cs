@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ECommerceAPI.Application.Services;
 using ECommerceAPI.Infrastructure.Operations;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 
 namespace ECommerceAPI.Infrastructure.Services
 {
-    public class FileService : IFileService
+    public class FileService
     {
         private readonly IWebHostEnvironment _webHostEnvironment;
 
@@ -111,7 +110,7 @@ namespace ECommerceAPI.Infrastructure.Services
                 string fileNewName = await FileRenameAsync(uploadPath, file.FileName);
 
                 bool result = await CopyFileAsync($"{uploadPath}\\{fileNewName}", file);
-                datas.Add((fileNewName, $"{uploadPath}\\{fileNewName}"));
+                datas.Add((fileNewName, $"{path}\\{fileNewName}"));
                 results.Add(result);
             }
 

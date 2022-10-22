@@ -1,7 +1,7 @@
 using ECommerceAPI.Application.Repositories;
 using MediatR;
 
-namespace ECommerceAPI.Application.Features.Queries.GetAllProduct;
+namespace ECommerceAPI.Application.Features.Queries.Product.GetAllProduct;
 
 public class GetAllProductQueryHandler : IRequestHandler<GetAllProductQueryRequest, GetAllProductQueryResponse>
 {

@@ -5,12 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using ECommerceAPI.Domain.Entities;
 using ECommerceAPI.Domain.Entities.Common;
+using ECommerceAPI.Domain.Entities.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using File = System.IO.File;
 
 namespace ECommerceAPI.Persistance.Contexts
 {
-    public class ECommerceAPIDbContext : DbContext
+    public class ECommerceAPIDbContext : IdentityDbContext<AppUser, AppRole, string>
     {
         public ECommerceAPIDbContext(DbContextOptions options) : base(options)
         {

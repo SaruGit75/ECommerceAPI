@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ECommerceAPI.Application.Repositories;
+﻿using ECommerceAPI.Application.Repositories;
 using ECommerceAPI.Domain.Entities.Identity;
 using ECommerceAPI.Persistance.Contexts;
 using ECommerceAPI.Persistance.Repositories;
@@ -11,7 +6,6 @@ using ECommerceAPI.Persistance.Repositories.File;
 using ECommerceAPI.Persistance.Repositories.InvoiceFile;
 using ECommerceAPI.Persistance.Repositories.ProductImageFile;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ECommerceAPI.Persistance.Extensions
@@ -31,8 +25,8 @@ namespace ECommerceAPI.Persistance.Extensions
                 opt.Password.RequireDigit = false;
                 opt.Password.RequireUppercase = false;
             }).AddEntityFrameworkStores<ECommerceAPIDbContext>();
-            
-            
+
+
             services.AddScoped<ICustomerReadRepository, CustomerReadRepository>();
             services.AddScoped<ICustomerWriteRepository, CustomerWriteRepository>();
             services.AddScoped<IOrderReadRepository, OrderReadRepository>();

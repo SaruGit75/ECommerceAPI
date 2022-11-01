@@ -16,7 +16,7 @@ public class TokenHandler : ITokenHandler
         _configuration = configuration;
     }
 
-    public Dto.Token CreateAccessToken(int minute)
+    public Dto.Token CreateAccessToken(int second)
     {
         Dto.Token token = new();
         //security keyin simetrisini aliyoruz.
@@ -26,7 +26,7 @@ public class TokenHandler : ITokenHandler
         SigningCredentials signingCredentials = new(securityKey, SecurityAlgorithms.HmacSha256);
 
         //Olusturulacak token ayarlarını veriyoruz.
-        token.Expiration = DateTime.UtcNow.AddMinutes(minute);
+        token.Expiration = DateTime.UtcNow.AddMinutes(second);
         JwtSecurityToken securityToken = new(
             audience: _configuration["TokenOptions:Audience"],
             issuer: _configuration["TokenOptions:Issuer"],

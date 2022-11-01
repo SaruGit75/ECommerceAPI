@@ -19,6 +19,7 @@ namespace ECommerceAPI.API.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly IMediator _mediator;
+
         public ProductsController(IMediator mediator)
         {
             _mediator = mediator;
@@ -73,7 +74,8 @@ namespace ECommerceAPI.API.Controllers
         }
 
         [HttpGet("[action]/{id}")]
-        public async Task<IActionResult> GetProductImages([FromRoute] GetProductImagesQueryRequest getProductImagesQueryRequest)
+        public async Task<IActionResult> GetProductImages(
+            [FromRoute] GetProductImagesQueryRequest getProductImagesQueryRequest)
         {
             List<GetProductImagesQueryResponse> response = await _mediator.Send(getProductImagesQueryRequest);
             return Ok(response);
